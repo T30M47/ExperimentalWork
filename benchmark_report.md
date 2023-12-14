@@ -85,12 +85,12 @@ Kod rezultata sam za tri testiranja za svaku usporedbu promatrao prosjek vremena
 
 ### Rezultati i grafovi
 
-## Usporedba korištenja indeksa i korištenja potpunog indeksa na upite sa svim stupcima iz indeksa ovisno o veličini tablice
+#### Usporedba korištenja indeksa i korištenja potpunog indeksa na upite sa svim stupcima iz indeksa ovisno o veličini tablice
 
-## Usporedba korištenja potpunog i djelomičnog indeksa na upite sa svim stupcima iz indeksa ovisno o kardinalnosti atributa sadržanih u djelomičnom indeksu
+#### Usporedba korištenja potpunog i djelomičnog indeksa na upite sa svim stupcima iz indeksa ovisno o kardinalnosti atributa sadržanih u djelomičnom indeksu
 
-## Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite samo s prva dva stupca iz točnog indeksa ovisno o njihovoj kardinalnosti
+#### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite samo s prva dva stupca iz točnog indeksa ovisno o njihovoj kardinalnosti
 
-## Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite sa svim stupcima iz indeksa
+#### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite sa svim stupcima iz indeksa
 
-## Prikaz svih upita zajedno na istom tipu tablice
+#### Prikaz svih upita zajedno na istom tipu tablice
