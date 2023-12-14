@@ -43,6 +43,7 @@ The home page contains a short description on how to benchmark this model, but y
  2. To test response times You can click on a button (check if your browser is loading) and wait that you get forwarded to the page with JSON response with summary of the ab test.
  3. You can get back to the home page with the left arrow integrated in Your browser (normal "go back" button/action).
  4. You can compare different read response times by clicking on different buttons for comparing different relationships between indexes based on the number of rows and different carinalities of chosen columns.
+ 5. You can compare the mean of "Time per request" in ab result or percentiles over 90.
 
 #### **HELP OR ADDITIONAL INFORMATION**
  If you have trouble with starting the test you should look at errors which appear in the terminal where You started the app.
