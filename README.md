@@ -91,7 +91,7 @@ The home page contains a short description on how to benchmark this model, but y
 
 * withWrongIndexBigCardFull/ - for testing queries on table with wrong index - opposite order of columns than normal index and big cardinality of columns naziv and cijena (query containing naziv, cijena, datum_kreiranja on which index is created)
 
-**I used the ab command with -n 1000 and -c 3 parameters adn this is hard-coded in my code (main/views.py).**
+**I used the ab command with -n 1000 and -c 3 parameters and this is hard-coded in my code (main/views.py).**
 ```
 ab -n 1000 -c 3 "yourURL"
 ```
