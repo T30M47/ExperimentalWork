@@ -18,7 +18,7 @@ U ovom benchmarku je testiran koncept konkateniranog (složenog indeksa). To je 
 * veliku ovisnost o prisutnosti određenih stupaca pa odbacivanje određenih stupaca u upitu mogu dovesti do smanjena efikasnosti
 * može dovesti do opterećenja održavanja ako uključuje puno stupaca
 * dovodi do sporijeg ažuriranja podataka zbog toga što se i on sam treba ažurirati kada se ovisni podaci promijene.
-* 
+  
 Konkatenirani indeks može pridonijeti u različitim vrstama aplikacija i slučajevima korištenja. <br>
 ### Neki od primjera korištenja:
 * kada želimo raditi pretragu po više stupaca, na primjer u online trgovinama kada želimo filtrirati proizvode po kategoriji i cijeni.
