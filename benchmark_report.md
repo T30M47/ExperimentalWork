@@ -46,10 +46,14 @@ Upiti na svaku tablicu su izgledali otprilike jednako te je njihov generalni pse
 ### Simulacija podataka 
 
 Same podatke sam simulirao pomoću factory-boy-a i Faker-a koji služe za kreiranje lažnih podataka. U sve tablice sam  točno 100000 podataka, osim kod onih s oznakom "ManjeRedaka" te sam kod njih postavio 100 podataka. Kako sam kreirao indekse nad stupcima naziv, cijena i datum_kreiranja upite sam većinom provodio nad njima. 
+
 Kako bi usporedio i prikazao razliku i performanse pojednih vrsta konkateniranih indeksa, većinom sam uspoređivao dvije po dvije situacije od ukupno četiri.
 Time sam prvo generirao jednu tablicu s normalnim indeksom gdje je bilo 100 podataka i drugu tablicu bez indeksa sa 100 podataka s istim kardinalnostima svih stupaca kako bi tablice bile jednake. Tu mi je bio cilj pokazati kako indeks nema efekta kada je u tablicama jako malo redaka. Zatim sam kreirao iste dvije tablice samo s 100000 podataka kako bi tu pokazao da kod puno podataka indeks počinje poboljšavati performanse.
+
 Zatim, kako bi usporedio potpuni i djelomični indeks, kreirao sam tri nove tablice sa 100000 podataka. Prva je imala potpuni indeks i veliku kardinalnost stupaca naziv i cijena koji su bili sadržani u djelomičnom indeksu. Druge dvije tablice su imale djelomični indeks samo na stupcima naziv i cijena samo s drugačijim kardinalnostima stupaca naziv i cijene. Tu mi je bio cilj pokazati kako kardinalnost stupaca koji su sadržani u djelomičnom indeksu imaju utjecaja na performanse upita s obzirom na obični indeks.
+
 Na kraju sam, kako bi testirao potpuni i indeks u krivom redoslijedu krerirao još četiri nove tablice. Prve dvije su imale indeks nad svim stupcima u normalnom redoslijedu te veliku i malenu kardinalnost stupaca naziv i cijena nad kojima se izvodio upit. Druge dvije su imale indekse nad svim stupcima u krivom redoslijedu te velike i malene kardinalnosti stupaca naziv i cijena. Tu je bila razlika što sam postavljao upit samo nad stupcima naziv i cijena kako bi prikazao performanse upita s krivim indeksom ovisno i njihovoj kardinalnosti.
+
 Testirao sam i vremena odgovora s ispravnim i krivim indeksom kada koristimo upit nad svim stupcima.
 
 **Primjer generiranja lažnih podataka za jednu tablicu:**
