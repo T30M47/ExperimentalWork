@@ -63,8 +63,8 @@ The home page contains a short description on how to benchmark this model, but y
     apk add apache2-utils
     ```
 
-## **Run the benchmark on Your data and examples (if You want)**
-
+# **Run the benchmark on Your data and examples (if You want)**
+---
 ### Descriptions of URLs
 * withoutIndex/ - for testing queries on table with no index and small cardinality of columns naziv and cijena (query containing naziv, cijena, datum_kreiranja)
   
