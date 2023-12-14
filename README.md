@@ -102,7 +102,9 @@ Here is an example of URLs for comparison of index usage on small and big tables
 100 Rows, there should be no significant difference:
 * http://127.0.0.1:8000/withoutIndexLessRows/?naziv=bread&cijena=1.99&datum_kreiranja=1993-09-13
 * http://127.0.0.1:8000/withIndexLessRows/?naziv=eggs&cijena=9.99&datum_kreiranja=2022-03-14
-  VS
+
+VS
+
 100000 rows, now the index should help a lot:
 * http://127.0.0.1:8000/withoutIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1989-03-15
 * http://127.0.0.1:8000/withIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=1996-03-13
@@ -122,3 +124,5 @@ But this way, all the data in the database will change and You will have to chan
 http://localhost:8000/admin
 ```
 and login with username: admin, password: admin data, and try to do a request for data You choose based on the given URLs before.
+
+*You should also look at which URL queries all columns from index or just a part of them from descriptions of URLs.*
