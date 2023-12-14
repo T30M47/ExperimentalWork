@@ -18,7 +18,7 @@ git clone https://github.com/T30M47/ExperimentalWork.git
 1. After extracting the folder, open it in Your text editor.
 2. Download the "db.sqlite3" file separately (Chose the file in this repo and click "*Download Raw*")
 3. Put the downloaded raw file of the database in downloaded mysite folder (replace the old one with this downloaded one)
-4. This is needed, because this file is put on GitHub with git lfs for uploading large files and without this steps, You will not have a working database file, put just a text file with a pointer to it.
+4. This is needed, because this file is put on GitHub with git lfs for uploading large files and without this steps, You will not have a working database file, but just a text file with a pointer to it.
 
 
 After You prepared the folder and Your environment, go in the terminal in Your text editor and go to the root folder if You are not in it (root folder is the folder where the Dockerfile is located).
