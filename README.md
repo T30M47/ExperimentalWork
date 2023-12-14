@@ -1,4 +1,4 @@
-# Experimental-work - Concatenated-index
+# Experimental work - Concatenated index
 ---
 This repository is used for experimental work for "Infrastruktura za podatke velikog obujma" course on Faculty of informatics and Digital Technologies. It covers bencmarking of read requests response time with and without concatenated index.  The complete Django web app source code and neccessary Docker files are given which are described later.
 
