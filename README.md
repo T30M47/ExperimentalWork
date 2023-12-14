@@ -4,7 +4,7 @@ This repository is used for experimental work for "Infrastruktura za podatke vel
 
 # Description for using
 ---
-After downloading the .zip file (and extracting it and opening it in your text editor) from Github or after cloning it in your text editor, open the terminal and move to the root folder that contains extracted files.
+After downloading the .zip file (and extracting it and opening it in your text editor) from Github or after cloning it in your text editor, open the terminal and move to the root folder that contains extracted files (You can try ls command to see if Dockerfile is in it).
 ```
 cd yourPath/rootFolder
 ```
