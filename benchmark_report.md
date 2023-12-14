@@ -45,7 +45,9 @@ Web Server unutar Django web aplikacije ne komunicira direktno s bazom podataka 
 
 Upiti na svaku tablicu su izgledali otprilike jednako te je njihov generalni pseudokod prikazan na dnu slike (Većinom su bili slani upiti na sve stupce koji su bili sadržani u indeksu, jedino se kod usporedbe dobrog i krivog indeksa slao upit na prva dva stupca, naziv i cijenu). Kod slanja određenih URL-ova, osim odgovarajuće putanje, dodani su i parametri sa znakom upitnika koji su bili odvojeni znakom & te su oni predstavljali vrijednosti stupaca (/?naziv=name&cijena=price&datum_kreiranja=date). 
 
-### Simulacija podataka 
+## Simulacija podataka 
+
+---
 
 Same podatke sam simulirao pomoću factory-boy-a i Faker-a koji služe za kreiranje lažnih podataka. U sve tablice sam  točno 100000 podataka, osim kod onih s oznakom "ManjeRedaka" te sam kod njih postavio 100 podataka. Kako sam kreirao indekse nad stupcima naziv, cijena i datum_kreiranja upite sam većinom provodio nad njima. 
 
