@@ -44,6 +44,7 @@ The home page contains a short description on how to benchmark this model, but y
  3. You can get back to the home page with the left arrow integrated in Your browser (normal "go back" button/action).
  4. You can compare different read response times by clicking on different buttons for comparing different relationships between indexes based on the number of rows and different carinalities of chosen columns.
  5. You can compare the mean of "Time per request" in ab result or percentiles over 90.
+ 6. If You want to use Your own ab tests on URLs, I recommend You read the descriptions of URLs below (not needed for just using GUI and buttons).
 
 #### **HELP OR ADDITIONAL INFORMATION**
  If you have trouble with starting the test you should look at errors which appear in the terminal where You started the app.
@@ -63,7 +64,7 @@ The home page contains a short description on how to benchmark this model, but y
     apk add apache2-utils
     ```
 
-# **Run the benchmark on different data and examples (if You want)**
+## **Run the benchmark on different data and examples (if You want)**
 ---
 ### Descriptions of URLs
 * withoutIndex/ - for testing queries on table with no index and small cardinality of columns naziv and cijena (query containing naziv, cijena, datum_kreiranja)
