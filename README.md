@@ -100,7 +100,9 @@ ab -n 1000 -c 3 "yourURL"
 **For results I used mean of "Time per request" and above 90 percentiles**
 
 Here is an example of URLs for comparison of index usage on small and big tables that you could test and send ab requests to in Your own terminal:
+
 **For comparing with and without index based on size of table (100 and 100000 rows):
+
 100 Rows, there should be no significant difference:
 * http://127.0.0.1:8000/withoutIndexLessRows/?naziv=bread&cijena=1.99&datum_kreiranja=1993-09-13
 * http://127.0.0.1:8000/withIndexLessRows/?naziv=eggs&cijena=9.99&datum_kreiranja=2022-03-14
