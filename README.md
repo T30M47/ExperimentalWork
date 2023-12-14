@@ -123,7 +123,7 @@ and change the neccessary constant in the beggining of the file (e.g NUM_PROIZVO
 ```
 ./manage.py setup_test_data
 ```
-But this way, all the data in the database will change and You will have to change Your queries, so You should go to:
+But this way, all the data in the database will change and You will have to change Your URLs, so You should go to:
 ```
 http://localhost:8000/admin
 ```
