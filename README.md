@@ -4,6 +4,7 @@ This repository is used for experimental work for "Infrastruktura za podatke vel
 
 # Description for using
 ---
+**I used Linux for implementing this benchmark, response times may be different on other operating systems, but the comparisons between response times will have the same relationships.**
 
 **The recommended way to use this repo is to clone it, because just downloading the .zip file has extra steps which will be described later!***
 
@@ -63,7 +64,15 @@ The home page contains a short description on how to benchmark this model, but y
     ```
     apk add apache2-utils
     ```
-
+ ### Windows
+    ```
+    [https://httpd.apache.org/docs/2.4/platform/win_compiling.html](https://httpd.apache.org/download.cgi)
+    ```
+ ### macOS
+    ```
+    probably installed on macOS
+    ```
+ 
 ## **Run the benchmark on different data and examples (if You want)**
 ---
 ### Descriptions of URLs
@@ -115,7 +124,7 @@ VS
 
 In that way, You can also test other situations...
 
-If You want to change the amount of data in tables, You should go to:
+If You want to run the tests on different amount of data in tables, You should go to:
 ```
 mysite/main/management/commands/setup_test_data.py
 ```
@@ -123,10 +132,11 @@ and change the neccessary constant in the beggining of the file (e.g NUM_PROIZVO
 ```
 ./manage.py setup_test_data
 ```
+If you want to test only the difference in response times based on the number of rows, I reccomend that You change the four neccessary constants and change others to a smaller number (not needed, but without it the generation of data will last for about 10 minutes)
 But this way, all the data in the database will change and You will have to change Your URLs, so You should go to:
 ```
 http://localhost:8000/admin
 ```
 and login with username: admin, password: admin data, and try to do a request for data You choose based on the given URLs before.
 
-*You should also look at which URL queries all columns from index or just a part of them from descriptions of URLs.*
+*You should also look at which URL queries all columns from index or just a part of them from the descriptions of URLs.*
