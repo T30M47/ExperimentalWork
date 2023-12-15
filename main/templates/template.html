@@ -7,10 +7,11 @@
 </head>
 <body>
     <h1>Testing read response time with and without <strong>Concatenated Index</strong></h1>
-    <p>The tests are done on different versions of the same Proizvod table with columns naziv, cijena, opis, dostupna_kolicina, datum_kreiranja and datum_azuriranja.
-    <p>After the test is done and You get a JSON response, You should return to the home page using the back arrow in Your browser.</p>
-    <p>I used ab with -n 1000 and -c 3 parameters to do the test.</p>
-    <p>The longest test will take about 6 to 7 seconds so You should be patient (check if Your browser is loading)...</p>
+    <p>The tests are done on different versions of the Proizvod table with columns naziv, cijena, opis, dostupna_kolicina, datum_kreiranja and datum_azuriranja.
+    <p>Concatenated indexes are created on columns naziv, cijena and datum_kreiranja (Wrong index has opposite order and part index only contains naziv and cijena).</p>
+    <p>You can run a test by clicking a button and after the test is done and You get a JSON response, You should return to the home page using the back arrow in Your browser.</p>
+    <p>I used ab with -n 1000 and -c 3 parameters to do all off the tests.</p>
+    <p>Some tests can last for a long time, so You should be patient (check if Your browser is loading)...</p>
     <p><i>If you have trouble with starting the test check if You have ab installed (Markdown on GitHub has instructions for installing.)</i></p>
     <p>You can watch "Time per request" or percentiles above 90 for comparison.</p>
     
@@ -90,6 +91,7 @@
     <br><br> 
     <h2>Conclusion</h2>
     <p>Concatenated index can definitely boost performance of some queries, but You should test it with Your specific queries and workload.</p>
+    <p>All versions of concatenated index improve read response times in comparison to not using an index, but You should be careful when to use which and that was shown in the tests before.</p>
     <p>Here are some general situations where Concatenated and its types can be helpful:</p>
     <ul>
     <li>Do not use Concatenated Index if You have small number of rows in Your database, it won't make any difference for queries that search all columns within an index.</li>
