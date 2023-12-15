@@ -66,7 +66,7 @@ The home page contains a short description on how to benchmark this model, but y
     ```
  ### Windows
     ```
-    [Download ab](https://httpd.apache.org/download.cgi)
+    https://httpd.apache.org/download.cgi
     ```
  ### macOS
     ```
