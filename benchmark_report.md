@@ -98,5 +98,3 @@ Kod rezultata sam za tri testiranja za svaku usporedbu promatrao prosjek vremena
 ### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite samo s prva dva stupca iz točnog indeksa ovisno o njihovoj kardinalnosti
 
 ### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite sa svim stupcima iz indeksa
-
-#### Prikaz svih upita zajedno na istom tipu tablice
