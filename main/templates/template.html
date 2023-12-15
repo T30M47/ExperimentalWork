@@ -13,7 +13,7 @@
     <p>I used ab with -n 1000 and -c 3 parameters to do all off the tests.</p>
     <p>Some tests can last for a long time, so You should be patient (check if Your browser is loading)...</p>
     <p><i>If you have trouble with starting the test check if You have ab installed (Markdown on GitHub has instructions for installing.)</i></p>
-    <p>You can watch "Time per request" or percentiles above 90 for comparison.</p>
+    <p>You can watch "Time per request" for concurrent requests or percentiles above 90 for comparison.</p>
     
     <h2>Testing read response time with and without Index based on the size of the table:</h2>
     <p><strong>Looking for all data with specific values for naziv, cijena and datum_kreiranja on which the index is created.</strong></p>
@@ -94,7 +94,7 @@
     <p>All versions of concatenated index improve read response times in comparison to not using an index, but You should be careful when to use which and that was shown in the tests before.</p>
     <p>Here are some general situations where Concatenated and its types can be helpful:</p>
     <ul>
-    <li>Do not use Concatenated Index if You have small number of rows in Your database, it won't make any difference for queries that search all columns within an index.</li>
+    <li>Do not use Concatenated Index if You have small number of rows in Your database, it won't make any difference for queries that search all columns within an index it can even make response time longer.</li>
     <li>Part Concatenated Indexes can be as useful as Full Concatenated indexes based on cardinality of used columns within the part index for queries that search all columns within an index. </li>
         <ul>
         <li>If You have large cardinality of used columns, then the part index can search a smaller amount of rows because they are more different.</li>
