@@ -24,7 +24,7 @@ git clone https://github.com/T30M47/ExperimentalWork.git
 
 After You prepared the folder and Your environment, go in the terminal in Your text editor and go to the root folder if You are not in it (root folder is the folder where the Dockerfile is located).
 ```
-cd yourPath/rootFolder
+cd ./ExperimentalWork
 ```
 If you already are in the root folder (where the Dockerfile is located), build your docker image with:
 ```
