@@ -91,7 +91,20 @@ Kod rezultata sam za tri testiranja za svaku usporedbu promatrao prosjek vremena
 
 ---
 
-### Usporedba korištenja indeksa i korištenja potpunog indeksa na upite sa svim stupcima iz indeksa ovisno o veličini tablice
+Točna vremena odgovora i percentili mogu varirati od prikazanih vremena, ali bi odnosi trebali ostati isti.
+
+### Usporedba ne korištenja indeksa i korištenja potpunog indeksa na upite sa svim stupcima iz indeksa ovisno o veličini tablice
+
+Rezultati je proveden slanjem tri ab testa za svaki slučaj te je onda izračunat prosjek vremena odgovora u milisekundama.
+
+Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
+U slučaju kada imamo 100000 podataka indeks može ubrzati upit za ~ 4.7ms što vidimo iz grafa.
+
+![Rezultat](results/SiliBezProsjek.png)
+
+Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je 
+
+![Rezultat](results/SiliBezPercentil.png) 
 
 ### Usporedba korištenja potpunog i djelomičnog indeksa na upite sa svim stupcima iz indeksa ovisno o kardinalnosti atributa sadržanih u djelomičnom indeksu
 

@@ -24,7 +24,7 @@ git clone https://github.com/T30M47/ExperimentalWork.git
 
 After You prepared the folder and Your environment, go in the terminal in Your text editor and go to the root folder if You are not in it (root folder is the folder where the Dockerfile is located).
 ```
-cd yourPath/rootFolder
+cd ./ExperimentalWork
 ```
 If you already are in the root folder (where the Dockerfile is located), build your docker image with:
 ```
@@ -46,6 +46,7 @@ The home page contains a short description on how to benchmark this model, but y
  4. You can compare different read response times by clicking on different buttons for comparing different relationships between indexes based on the number of rows and different carinalities of chosen columns.
  5. You can compare the mean of "Time per request" in ab result or percentiles over 90.
  6. If You want to use Your own ab tests on URLs, I recommend You read the descriptions of URLs below (not needed for just using GUI and buttons).
+ 7. You can see the data and tables if You go on "http://localhost:8000/admin" and login with "admin" for username and password.
 
 #### **HELP OR ADDITIONAL INFORMATION**
  If you have trouble with starting the test you should look at errors which appear in the terminal where You started the app.
