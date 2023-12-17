@@ -6,6 +6,7 @@ import time
 from django.shortcuts import render
 from django.http import HttpResponse
 import subprocess
+from django.core.cache import cache
 # Create your views here.
 
 def homepage(request):
@@ -24,6 +25,8 @@ class GetDataWithoutIndex(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithoutIndex'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithIndex(View):
@@ -39,6 +42,8 @@ class GetDataWithIndex(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithIndex'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithPartIndex(View):
@@ -54,6 +59,8 @@ class GetDataWithPartIndex(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithPartIndex'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithWrongIndex(View):
@@ -67,6 +74,8 @@ class GetDataWithWrongIndex(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithWrongIndex'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 
@@ -83,6 +92,8 @@ class GetDataWithoutIndexLessRows(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithoutIndexLessRows'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithIndexLessRows(View):
@@ -98,6 +109,8 @@ class GetDataWithIndexLessRows(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithIndexLessRows'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithIndexBigCard(View):
@@ -113,6 +126,8 @@ class GetDataWithIndexBigCard(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithIndexBigCard'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithPartIndexBigCard(View):
@@ -128,6 +143,8 @@ class GetDataWithPartIndexBigCard(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithPartIndexBigCard'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithWrongIndexBigCard(View):
@@ -141,6 +158,8 @@ class GetDataWithWrongIndexBigCard(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithWrongIndexBigCard'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithIndexDate(View):
@@ -154,6 +173,8 @@ class GetDataWithIndexDate(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithIndexDate'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithIndexBigDate(View):
@@ -167,6 +188,8 @@ class GetDataWithIndexBigDate(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithIndexBigDate'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithWrongIndexFull(View):
@@ -182,6 +205,8 @@ class GetDataWithWrongIndexFull(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithWrongIndexFull'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 class GetDataWithWrongIndexBigCardFull(View):
@@ -197,6 +222,8 @@ class GetDataWithWrongIndexBigCardFull(View):
         )
 
         proizvodi_json = list(proizvodi.values())
+        cache_key = 'cache_key_for_GetDataWithWrongIndexBigCardFull'
+        cache.delete(cache_key)
         return JsonResponse(proizvodi_json, safe=False)
 
 
@@ -218,6 +245,9 @@ def testWithoutIndex(request):
         'output': output,
     }
     
+    cache_key = 'cache_key_for_GetDataWithoutIndex'
+    cache.delete(cache_key)
+
     return JsonResponse(response_data)
 
 def testWithIndex(request):
@@ -238,6 +268,9 @@ def testWithIndex(request):
         'output': output,
     }
     
+    cache_key = 'cache_key_for_GetDataWithIndex'
+    cache.delete(cache_key)
+
     return JsonResponse(response_data)
 
 def testWithPartIndex(request):
@@ -258,6 +291,9 @@ def testWithPartIndex(request):
         'output': output,
     }
     
+    cache_key = 'cache_key_for_GetDataWithPartIndex'
+    cache.delete(cache_key)
+
     return JsonResponse(response_data)
 
 def testWithWrongIndex(request):
@@ -276,6 +312,9 @@ def testWithWrongIndex(request):
         'output': output,
     }
     
+    cache_key = 'cache_key_for_GetDataWithWrongIndex'
+    cache.delete(cache_key)
+
     return JsonResponse(response_data)
 
 def testWithoutIndexLessRows(request):
@@ -295,7 +334,8 @@ def testWithoutIndexLessRows(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithoutIndexLessRows'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
 
 def testWithIndexLessRows(request):
@@ -315,7 +355,8 @@ def testWithIndexLessRows(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithIndexLessRows'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
 
 def testWithIndexBigCard(request):
@@ -335,7 +376,8 @@ def testWithIndexBigCard(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithIndexBigCard'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
 
 def testWithPartIndexBigCard(request):
@@ -355,7 +397,8 @@ def testWithPartIndexBigCard(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithPartIndexBigCard'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
 
 def testWithWrongIndexBigCard(request):
@@ -373,7 +416,8 @@ def testWithWrongIndexBigCard(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithWrongIndexBigCard'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
 
 def testWithIndexDate(request):
@@ -391,7 +435,8 @@ def testWithIndexDate(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithIndexDate'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
 
 def testWithIndexBigDate(request):
@@ -409,7 +454,8 @@ def testWithIndexBigDate(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithIndexBigDate'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
 
 def testWithWrongIndexFull(request):
@@ -429,7 +475,8 @@ def testWithWrongIndexFull(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithWrongIndexFull'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
 
 def testWithWrongIndexBigCardFull(request):
@@ -449,5 +496,6 @@ def testWithWrongIndexBigCardFull(request):
         },
         'output': output,
     }
-    
+    cache_key = 'cache_key_for_GetDataWithWrongIndexBigCardFull'
+    cache.delete(cache_key)
     return JsonResponse(response_data)
