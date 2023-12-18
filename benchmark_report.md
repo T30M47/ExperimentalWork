@@ -96,15 +96,26 @@ Točna vremena odgovora i percentili mogu varirati od prikazanih vremena, ali bi
 ### Usporedba ne korištenja indeksa i korištenja potpunog indeksa na upite sa svim stupcima iz indeksa ovisno o veličini tablice
 
 Rezultati je proveden slanjem tri ab testa za svaki slučaj te je onda izračunat prosjek vremena odgovora u milisekundama.
+Dobiveni rezultati za prosjek vremena odgovora:
+* Bez indeksa i 100 redaka: 13.082 ms
+* S indeksom i 100 redaka: 12.969 ms
+* Bez indeksa i 100000 redaka: 32.136 ms
+* S indeksom i 100000 redaka: 12.875 ms
+
+Dobiveni 95. percentili za tri upita od svakog slučaja:
+* Bez indeksa i 100 redaka: (18ms, 17ms, 17ms)
+* S indeksom i 100 redaka: (18ms, 17ms, 17ms)
+* Bez indeksa i 100000 redaka: (46ms, 44ms, 41ms)
+* S indeksom i 100000 redaka: (17ms, 17ms, 17ms)
 
 Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
-U slučaju kada imamo 100000 podataka indeks može ubrzati upit za ~ 4.7ms što vidimo iz grafa.
+U slučaju kada imamo 100000 podataka indeks može ubrzati upit za ~ 20ms što vidimo iz grafa.
 
-![Rezultat](results/SiliBezProsjek.png)
+![Rezultat](results/WorWOavg.png)
 
-Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je 
+Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je vrijeme odgovora otprilike podjednako, dok je kod druga tri upita koja su koristila indeks vrijeme odgovora je, u slučaju 100 redaka ostalo jednako, a kod 100000 redaka vrijeme odgovora je postalo veće za ~25-30ms.
 
-![Rezultat](results/SiliBezPercentil.png) 
+![Rezultat](results/WorWOperc.png) 
 
 ### Usporedba korištenja potpunog i djelomičnog indeksa na upite sa svim stupcima iz indeksa ovisno o kardinalnosti atributa sadržanih u djelomičnom indeksu
 
