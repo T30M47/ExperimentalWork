@@ -102,14 +102,14 @@ Dobiveni rezultati za prosjek vremena odgovora:
 * Bez indeksa i 100000 redaka: 32.136 ms
 * S indeksom i 100000 redaka: 12.875 ms
 
+Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
+U slučaju kada imamo 100000 podataka indeks može ubrzati pretragu za ~ 20ms što vidimo iz grafa.
+
 Dobiveni 95. percentili za tri upita od svakog slučaja:
 * Bez indeksa i 100 redaka: (18ms, 17ms, 17ms)
 * S indeksom i 100 redaka: (18ms, 17ms, 17ms)
 * Bez indeksa i 100000 redaka: (46ms, 44ms, 41ms)
 * S indeksom i 100000 redaka: (17ms, 17ms, 17ms)
-
-Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
-U slučaju kada imamo 100000 podataka indeks može ubrzati pretragu za ~ 20ms što vidimo iz grafa.
 
 ![Rezultat](results/WorWOaverage.png)
 
@@ -126,9 +126,19 @@ Dobiveni rezultati za prosjek vremena odgovora:
 * Potpuni indeks i mala kardinalnost stupaca naziv i cijena: 12.848 ms
 * Djelomični indeks i mala kardinalnost stupaca naziv i cijena: 33.580 ms
 
-Pri odabiru korištenja potpunog konkateniranog indeksa (naziv, cijena, datum_kreiranja) ili djelomičnog konkateniranog indeksa (naziv, cijena) treba uzeti u obzir kardinalnost (broj različitih vrijednosti) određenih stupaca. Ako se koristi upit koji traži sve stupce iz indeksa treba uzeti u obzir različite kardinalnosti stupaca iz djelomičnog indeksa (naziv, cijena). Time, ako imamo veliku kardinalnost (veliki broj različitih vrijednosti) tih stupaca, potpuni i djelomični indeks će imati jednake performanse jer će djelomični indeks uspjeti smanjiti broj redaka koje mora pretražiti na otprilike jednak broj kao i potpuni indeks. Ako se promatra mala kardinalnost tih stupaca (puno duplikata), potpuni indeks će imati jednake performanse, no djelomični indeks će biti ~ 20 ms sporiji jer će pretraživati samo naziv i cijenu, a pošto je 
+Pri odabiru korištenja potpunog konkateniranog indeksa (naziv, cijena, datum_kreiranja) ili djelomičnog konkateniranog indeksa (naziv, cijena) treba uzeti u obzir kardinalnost (broj različitih vrijednosti) određenih stupaca. Ako se koristi upit koji traži sve stupce iz indeksa treba uzeti u obzir različite kardinalnosti stupaca iz djelomičnog indeksa (naziv, cijena). Time, ako imamo veliku kardinalnost (veliki broj različitih vrijednosti) tih stupaca (oko 90000 jedinstvenih kombinacija naziva i cijene), potpuni i djelomični indeks će imati jednake performanse jer će djelomični indeks uspjeti smanjiti broj redaka koje mora pretražiti na otprilike jednak broj kao i potpuni indeks. Ako se promatra mala kardinalnost tih stupaca (3, time i puno duplikata s istom kombinacijom naziva i cijene), potpuni indeks će imati jednake performanse, no djelomični indeks će biti ~ 20 ms sporiji jer će pretraživati samo naziv i cijenu, a pošto je jako puno duplikata trebati će kroz svih njih proći i vratiti ih.
 
-![Rezultat](results/ForPaverage.png)
+![Rezultat](results/ForPaver.png)
+
+Dobiveni 95. percentili za tri upita od svakog slučaja:
+* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: (18ms, 17ms, 17ms)
+* Djelomični indeks i velika kardinalnost stupaca naziv i cijena: (17ms, 18ms, 18ms)
+* Potpuni indeks i mala kardinalnost stupaca naziv i cijena: (17ms, 17ms, 18ms)
+* Djelomični indeks i mala kardinalnost stupaca naziv i cijena: (48ms, 43ms, 47ms)
+
+Promatrajući 
+
+![Rezultat](results/ForPpercen.png)
 
 ### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite samo s prva dva stupca iz točnog indeksa ovisno o njihovoj kardinalnosti
 
