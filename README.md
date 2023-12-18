@@ -15,11 +15,9 @@ This repository is used for experimental work for "Infrastruktura za podatke vel
 git clone https://github.com/T30M47/ExperimentalWork.git
 ```
 
-**If You decide to dowload the zip file of the code, you have to do some extra steps:**
+**If You decide to dowload the zip file of the code:**
 1. After extracting the folder, open it in Your text editor.
-2. Download the "db.sqlite3" file separately (Chose the file in this repo and click "*Download Raw*")
-3. Put the downloaded raw file of the database in downloaded mysite folder (replace the old one with this downloaded one)
-4. This is needed, because this file is put on GitHub with git lfs for uploading large files and without this steps, You will not have a working database file, but just a text file with a pointer to it.
+2. Keep on following the next steps.
 
 
 After You prepared the folder and Your environment, go in the terminal in Your text editor and go to the root folder if You are not in it (root folder is the folder where the Dockerfile is located).
@@ -43,7 +41,7 @@ The home page contains a short description on how to benchmark this model, but y
  1. The homepage contains buttons for comparing response times of conacatenated indexes (without, with concat. index, with part of concat. index and with concat. index with wrong order of columns).
  2. To test response times You can click on a button (check if your browser is loading) and wait that you get forwarded to the page with JSON response with summary of the ab test.
  3. You can get back to the home page with the left arrow integrated in Your browser (normal "go back" button/action).
- 4. You can compare different read response times by clicking on different buttons for comparing different relationships between indexes based on the number of rows and different carinalities of chosen columns.
+ 4. You can compare different read response times by clicking on different buttons for comparing different relationships between indexes based on the number of rows and different cardinalities of chosen columns.
  5. You can compare the mean of "Time per request" for every three tests in ab result or percentiles over 90.
  6. If You want to use Your own ab tests on URLs, I recommend You read the descriptions of URLs below (not needed for just using GUI and buttons).
  7. You can see the data and tables if You go on "http://localhost:8000/admin" and login with "admin" for username and password.
@@ -111,17 +109,17 @@ ab -n 1000 -c 3 "yourURL"
 
 Here is an example of URLs for comparison of index usage on small and big tables that you could test and send ab requests to in Your own terminal:
 
-**For comparing with and without index based on size of table (100 and 100000 rows):**
+**For comparing with and without index based on size of table (100 and 50000 rows):**
 
 100 Rows, there should be no significant difference:
-* http://127.0.0.1:8000/withoutIndexLessRows/?naziv=bread&cijena=1.99&datum_kreiranja=1993-09-13
-* http://127.0.0.1:8000/withIndexLessRows/?naziv=eggs&cijena=9.99&datum_kreiranja=2022-03-14
+* http://127.0.0.1:8000/withoutIndexLessRows/?naziv=bread&cijena=1.99&datum_kreiranja=1989-02-02
+* http://127.0.0.1:8000/withIndexLessRows/?naziv=eggs&cijena=9.99&datum_kreiranja=2018-11-20
 
 VS
 
-100000 rows, now the index should help a lot:
-* http://127.0.0.1:8000/withoutIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1989-03-15
-* http://127.0.0.1:8000/withIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=1996-03-13
+50000 rows, now the index should help a lot:
+* http://127.0.0.1:8000/withoutIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1989-03-16
+* http://127.0.0.1:8000/withIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=1996-03-24
 
 In that way, You can also test other situations...
 
