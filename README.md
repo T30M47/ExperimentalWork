@@ -44,7 +44,7 @@ The home page contains a short description on how to benchmark this model, but y
  2. To test response times You can click on a button (check if your browser is loading) and wait that you get forwarded to the page with JSON response with summary of the ab test.
  3. You can get back to the home page with the left arrow integrated in Your browser (normal "go back" button/action).
  4. You can compare different read response times by clicking on different buttons for comparing different relationships between indexes based on the number of rows and different carinalities of chosen columns.
- 5. You can compare the mean of "Time per request" in ab result or percentiles over 90.
+ 5. You can compare the mean of "Time per request" for every three tests in ab result or percentiles over 90.
  6. If You want to use Your own ab tests on URLs, I recommend You read the descriptions of URLs below (not needed for just using GUI and buttons).
  7. You can see the data and tables if You go on "http://localhost:8000/admin" and login with "admin" for username and password.
 
