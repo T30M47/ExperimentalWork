@@ -85,7 +85,7 @@ Za mjerenja vremena odgovora sam koristio Apache Benchmark (ab). Radi lakšeg po
 ab -n 1000 -c 3 "URL"
 ```
 Time sam definirao da se pošalje 1000 zahtjeva te da bude razina konkurencije 3, odnosno da se šalju tri istovremena zahtjeva. Razlog zbog kojega sam slao samo 1000 zahtjeva je bio veliki broj različitih usporedbi pa bi testovi predugo trajali, a ovako se relativno mogu brzo testirati i, još bitnije, prikazati razlike. Razinu konkurencije sam postavio na 3 jer mi na početnim testiranjima, bez konkurencije nije bilo previše razlike pa sam odlučio da se šalju tri istovremena zahtjeva.
-Kod rezultata sam za tri testiranja za svaku usporedbu promatrao prosjek vremena po konkurentnim zahtjevima te 95. percentil kako bi potvrdio rezultate dobivene prosjekom jer oni mogu biti nepouzdani. Taj 95. Percentil je definirao da je 95% zahtjeva imalo vrijeme odgovora manje ili jednako od dobivenog praga u milisekundama.  
+Kod rezultata sam za tri testiranja za svaku usporedbu promatrao prosjek vremena odgovora te 95. percentil kako bi potvrdio rezultate dobivene prosjekom jer oni mogu biti nepouzdani. Taj 95. Percentil je definirao da je 95% zahtjeva imalo vrijeme odgovora manje ili jednako od dobivenog praga u milisekundama.  
 
 ## Rezultati i grafovi
 
