@@ -109,15 +109,26 @@ Dobiveni 95. percentili za tri upita od svakog slučaja:
 * S indeksom i 100000 redaka: (17ms, 17ms, 17ms)
 
 Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
-U slučaju kada imamo 100000 podataka indeks može ubrzati upit za ~ 20ms što vidimo iz grafa.
+U slučaju kada imamo 100000 podataka indeks može ubrzati pretragu za ~ 20ms što vidimo iz grafa.
 
-![Rezultat](results/WorWOavg.png)
+![Rezultat](results/WorWOaverage.png)
 
-Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je vrijeme odgovora otprilike podjednako, dok je kod druga tri upita koja su koristila indeks vrijeme odgovora je, u slučaju 100 redaka ostalo jednako, a kod 100000 redaka vrijeme odgovora je postalo veće za ~25-30ms.
+Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je vrijeme odgovora za 100000 podataka puno veće nego kod 100 podataka. U slučaju druga tri upita gdje se koristio indeks, vidimo da je neovisno o količini podataka, vrijeme podataka otprilike isto. Time se iz grafa može zaključiti da korištenje indeksa s jako malo podataka nema nikakvoga utjecaja (narančasta linija), dok s jako puno podataka, prema 95. percentilu, indeks ubrzava pretragu za ~ 25-30 ms.
 
-![Rezultat](results/WorWOperc.png) 
+![Rezultat](results/WorWOpercentile.png) 
 
-### Usporedba korištenja potpunog i djelomičnog indeksa na upite sa svim stupcima iz indeksa ovisno o kardinalnosti atributa sadržanih u djelomičnom indeksu
+### Usporedba korištenja potpunog i djelomičnog indeksa (samo naziv i cijena) na upite sa svim stupcima iz indeksa ovisno o kardinalnosti atributa sadržanih u djelomičnom indeksu
+
+Rezultati je proveden slanjem tri ab testa za svaki slučaj te je onda izračunat prosjek vremena odgovora u milisekundama.
+Dobiveni rezultati za prosjek vremena odgovora:
+* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: 12.939 ms
+* Djelomični indeks i velika kardinalnost stupaca naziv i cijena: 13.007 ms
+* Potpuni indeks i mala kardinalnost stupaca naziv i cijena: 12.848 ms
+* Djelomični indeks i mala kardinalnost stupaca naziv i cijena: 33.580 ms
+
+Pri odabiru korištenja potpunog konkateniranog indeksa (naziv, cijena, datum_kreiranja) ili djelomičnog konkateniranog indeksa (naziv, cijena) treba uzeti u obzir kardinalnost (broj različitih vrijednosti) određenih stupaca. Ako se koristi upit koji traži sve stupce iz indeksa treba uzeti u obzir različite kardinalnosti stupaca iz djelomičnog indeksa (naziv, cijena). Time, ako imamo veliku kardinalnost (veliki broj različitih vrijednosti) tih stupaca, potpuni i djelomični indeks će imati jednake performanse jer će djelomični indeks uspjeti smanjiti broj redaka koje mora pretražiti na otprilike jednak broj kao i potpuni indeks. Ako se promatra mala kardinalnost tih stupaca (puno duplikata), potpuni indeks će imati jednake performanse, no djelomični indeks će biti ~ 20 ms sporiji jer će pretraživati samo naziv i cijenu, a pošto je 
+
+![Rezultat](results/ForPaverage.png)
 
 ### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite samo s prva dva stupca iz točnog indeksa ovisno o njihovoj kardinalnosti
 
