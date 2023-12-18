@@ -7,7 +7,7 @@ from factory.django import DjangoModelFactory
 from main.models import *
 
 ## Defining a factory
-cijena_values = [round(random.uniform(1, 1000), 2) for _ in range(1000)]
+cijena_values = [round(random.uniform(1, 1000), 2) for _ in range(2000)]
 
 class Proizvod_BezIndeksaFactory(DjangoModelFactory):
     class Meta:
@@ -46,9 +46,9 @@ class Proizvod_KriviIndeksFactory(DjangoModelFactory):
     class Meta:
         model = Proizvod_KriviIndeks
 
-    naziv = factory.Sequence(lambda n: f'proizvod_{n % 1000}')
+    naziv = factory.Sequence(lambda n: f'proizvod_{n % 2000}')
     opis = factory.Faker("sentence", nb_words = 10)
-    cijena = factory.Sequence(lambda n: cijena_values[n % 1000])
+    cijena = factory.Sequence(lambda n: cijena_values[n % 2000])
     dostupna_kolicina = factory.fuzzy.FuzzyInteger(0, 999)
     datum_kreiranja = factory.Faker('date_time')
     datum_azuriranja = factory.Faker('date_time')
@@ -112,9 +112,9 @@ class Proizvod_SIndeksom_Datum_Factory(DjangoModelFactory):
     class Meta:
         model = Proizvod_SIndeksom_Datum
     
-    naziv = factory.Sequence(lambda n: f'proizvod_{n % 1000}')
+    naziv = factory.Sequence(lambda n: f'proizvod_{n % 2000}')
     opis = factory.Faker("sentence", nb_words = 10)
-    cijena = factory.Sequence(lambda n: cijena_values[n % 1000])
+    cijena = factory.Sequence(lambda n: cijena_values[n % 2000])
     dostupna_kolicina = factory.fuzzy.FuzzyInteger(0, 999)
     datum_kreiranja = factory.Faker('date_time')
     datum_azuriranja = factory.Faker('date_time')

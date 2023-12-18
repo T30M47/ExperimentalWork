@@ -6,7 +6,7 @@ This repository is used for experimental work for "Infrastruktura za podatke vel
 ---
 **I used Linux for implementing this benchmark, response times may be different on other operating systems, but the comparisons between response times will have the same relationships.**
 
-**The recommended way to use this repo is to clone it, because just downloading the .zip file has extra steps which will be described later!***
+**The recommended way to use this repo is to clone it!**
 
 1. Firstly, create an empty folder and open it in Your text editor (I used VS Code)
 2. Open the terminal in Your text editor while in the empty folder You just created.

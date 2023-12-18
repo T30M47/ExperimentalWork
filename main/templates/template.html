@@ -18,83 +18,83 @@
     <h2>Testing read response time with and without Index based on the size of the table:</h2>
     <p><strong>Looking for all data with specific values for naziv, cijena and datum_kreiranja on which the index is created.</strong></p>
     <p>First we check differences in response times on Proizvod table with small amount of rows (100) and there should not be a big difference because of the index.</p>
-    <button><a href ="/testWithoutIndexLessRows/?naziv=bread&cijena=1.99&datum_kreiranja=2009-10-16">Run 1st test without Index and less rows.</a></button> VS
-    <button><a href ="/testWithIndexLessRows/?naziv=bread&cijena=1.99&datum_kreiranja=2001-02-11">Run 1st test with Index and less rows.</a></button>
+    <button><a href ="/testWithoutIndexLessRows/?naziv=bread&cijena=1.99&datum_kreiranja=2007-01-10">Run 1st test without Index and less rows.</a></button> VS
+    <button><a href ="/testWithIndexLessRows/?naziv=bread&cijena=1.99&datum_kreiranja=1989-10-21">Run 1st test with Index and less rows.</a></button>
     <br><br>
-    <button><a href ="/testWithoutIndexLessRows/?naziv=eggs&cijena=9.99&datum_kreiranja=2009-03-19">Run 2st test without Index and less rows.</a></button> VS
-    <button><a href ="/testWithIndexLessRows/?naziv=eggs&cijena=9.99&datum_kreiranja=1990-12-30">Run 2st test with Index and less rows.</a></button>
+    <button><a href ="/testWithoutIndexLessRows/?naziv=eggs&cijena=9.99&datum_kreiranja=1982-07-26">Run 2st test without Index and less rows.</a></button> VS
+    <button><a href ="/testWithIndexLessRows/?naziv=eggs&cijena=9.99&datum_kreiranja=1971-02-22">Run 2st test with Index and less rows.</a></button>
     <br><br>
-    <button><a href ="/testWithoutIndexLessRows/?naziv=milk&cijena=2.99&datum_kreiranja=1987-05-31">Run 3rd test without Index and less rows.</a></button> VS
-    <button><a href ="/testWithIndexLessRows/?naziv=milk&cijena=2.99&datum_kreiranja=2000-03-03">Run 3rd test with Index and less rows.</a></button>  
+    <button><a href ="/testWithoutIndexLessRows/?naziv=milk&cijena=2.99&datum_kreiranja=2014-05-22">Run 3rd test without Index and less rows.</a></button> VS
+    <button><a href ="/testWithIndexLessRows/?naziv=milk&cijena=2.99&datum_kreiranja=1991-08-25">Run 3rd test with Index and less rows.</a></button>  
     <br>
     <p>Now we check differences in response times when we have Proizvod table with large number of rows (50000) and index should make queries much faster.</p>
     <button><a href ="/testWithoutIndex/?naziv=bread&cijena=1.99&datum_kreiranja=1981-10-12">Run 1st test without Index and more rows.</a></button> VS
     <button><a href ="/testWithIndex/?naziv=bread&cijena=1.99&datum_kreiranja=1994-01-06">Run 1st test with Index and more rows.</a></button>
     <br><br>
-    <button><a href ="/testWithoutIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=2016-01-08">Run 2st test without Index and more rows.</a></button> VS
+    <button><a href ="/testWithoutIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=2016-01-07">Run 2st test without Index and more rows.</a></button> VS
     <button><a href ="/testWithIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=1999-02-21">Run 2st test with Index and more rows.</a></button>
     <br><br>
     <button><a href ="/testWithoutIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1980-09-17">Run 3rd test without Index and more rows.</a></button> VS
-    <button><a href ="/testWithIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1994-04-19">Run 3rd test with Index and more rows.</a></button>  
+    <button><a href ="/testWithIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1994-04-20">Run 3rd test with Index and more rows.</a></button>  
     <br>
     <br>
     <h2>Testing read response time with full and part (only on columns naziv and cijena) index based on the number of different values of columns naziv and cijena.</h2>
     <p><strong>Looking for all data with specific values for naziv, cijena and datum_kreiranja on which the index is created.</strong></p>
     <p>First we check the difference in response times on Proizvod table when columns naziv and cijena have a large number of different values and here there should not be any difference because the part index can reduce the number of rows for search.</p>
-    <button><a href ="/testWithIndexBigCard/?naziv=appear&cijena=94.97&datum_kreiranja=1996-02-15">Run 1st test with full Index and big cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithPartIndexBigCard/?naziv=involve&cijena=2.13&datum_kreiranja=2001-04-22">Run 1st test with Part Index and big cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexBigCard/?naziv=such&cijena=0.43&datum_kreiranja=2010-05-11">Run 1st test with full Index and big cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithPartIndexBigCard/?naziv=drop&cijena=4.56&datum_kreiranja=1994-05-15">Run 1st test with Part Index and big cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndexBigCard/?naziv=specific&cijena=2.95&datum_kreiranja=2002-09-07">Run 2nd test with full Index and big cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithPartIndexBigCard/?naziv=which&cijena=2.88&datum_kreiranja=1981-06-05">Run 2nd test with Part Index and big cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexBigCard/?naziv=learn&cijena=6.05&datum_kreiranja=1976-08-26">Run 2nd test with full Index and big cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithPartIndexBigCard/?naziv=color&cijena=5.21&datum_kreiranja=2010-02-08">Run 2nd test with Part Index and big cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndexBigCard/?naziv=daughter&cijena=40.08&datum_kreiranja=2001-06-09">Run 3rd test with full Index and big cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithPartIndexBigCard/?naziv=meet&cijena=9.97&datum_kreiranja=1973-04-16">Run 3rd test with Part Index and big cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexBigCard/?naziv=open&cijena=5.05&datum_kreiranja=2015-08-10">Run 3rd test with full Index and big cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithPartIndexBigCard/?naziv=feel&cijena=3.15&datum_kreiranja=1976-10-09">Run 3rd test with Part Index and big cardinality of naziv and cijena.</a></button>
     <br><br> 
     <p>Then we check the difference in response times on Proizvod table when columns naziv and cijena have a small number of possible values (3) and the difference is big because the part index cannot reduce the number of rows it has to search.</p>
-    <button><a href ="/testWithIndex/?naziv=milk&cijena=2.99&datum_kreiranja=2006-01-27">Run 1st test with full Index and small cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithPartIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1984-10-24">Run 1st test with Part Index and small cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndex/?naziv=milk&cijena=2.99&datum_kreiranja=2006-01-26">Run 1st test with full Index and small cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithPartIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1984-10-23">Run 1st test with Part Index and small cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=1979-01-24">Run 2nd test with full Index and small cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithPartIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=1984-10-23">Run 2nd test with Part Index and small cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=1979-01-23">Run 2nd test with full Index and small cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithPartIndex/?naziv=eggs&cijena=9.99&datum_kreiranja=1984-10-25">Run 2nd test with Part Index and small cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndex/?naziv=bread&cijena=1.99&datum_kreiranja=2005-03-14">Run 3rd test with full Index and small cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithPartIndex/?naziv=bread&cijena=1.99&datum_kreiranja=2001-04-14">Run 3rd test with Part Index and small cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndex/?naziv=bread&cijena=1.99&datum_kreiranja=2005-03-13">Run 3rd test with full Index and small cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithPartIndex/?naziv=bread&cijena=1.99&datum_kreiranja=2002-04-15">Run 3rd test with Part Index and small cardinality of naziv and cijena.</a></button>
     <br><br> 
     <h2>Testing read response time with full and wrong (opposite order of columns) index based on the number of different values of columns naziv and cijena.</h2>
     <p><strong>Looking for all data with specific values for only naziv and cijena.</strong></p>
     <p>First we check the difference in response times on Proizvod table when columns naziv and cijena have a smaller number of different values (5000) on 100000 rows and here there should be a noticable difference because the wrong index cannot efficiently use queried columns.</p>
-    <button><a href ="/testWithIndexDate/?naziv=proizvod_915&cijena=251.70">Run 1st test with full Index and small cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithWrongIndex/?naziv=proizvod_930&cijena=787.51">Run 1st test with Wrong Index and small cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexDate/?naziv=proizvod_1926&cijena=781.98">Run 1st test with full Index and small cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithWrongIndex/?naziv=proizvod_1913&cijena=709.93">Run 1st test with Wrong Index and small cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndexDate/?naziv=proizvod_190&cijena=999.98">Run 2nd test with full Index and small cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithWrongIndex/?naziv=proizvod_190&cijena=999.98">Run 2nd test with Wrong Index and small cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexDate/?naziv=proizvod_1905&cijena=746.31">Run 2nd test with full Index and small cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithWrongIndex/?naziv=proizvod_1927&cijena=338.94">Run 2nd test with Wrong Index and small cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndexDate/?naziv=proizvod_490&cijena=570.94">Run 3rd test with full Index and small cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithWrongIndex/?naziv=proizvod_131&cijena=643.46">Run 3rd test with Wrong Index and small cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexDate/?naziv=proizvod_192&cijena=860.32">Run 3rd test with full Index and small cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithWrongIndex/?naziv=proizvod_190&cijena=95.09">Run 3rd test with Wrong Index and small cardinality of naziv and cijena.</a></button>
     <br><br> 
     <p>Then we check the difference in response times on Proizvod table when columns naziv and cijena have a big number of possible values (almost all combinations are unique) and the difference is also noticable but smaller because the wrong index can more effectively use the queried columns.</p>
-    <button><a href ="/testWithIndexBigDate/?naziv=yourself&cijena=8.67">Run 1st test with full Index and big cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithWrongIndexBigCard/?naziv=suggest&cijena=0.69">Run 1st test with Wrong Index and big cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexBigDate/?naziv=tough&cijena=962.81">Run 1st test with full Index and big cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithWrongIndexBigCard/?naziv=power&cijena=3.16">Run 1st test with Wrong Index and big cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndexBigDate/?naziv=month&cijena=5.49">Run 2nd test with full Index and big cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithWrongIndexBigCard/?naziv=about&cijena=4.81">Run 2nd test with Wrong Index and big cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexBigDate/?naziv=citizen&cijena=71.76">Run 2nd test with full Index and big cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithWrongIndexBigCard/?naziv=treatment&cijena=8.65">Run 2nd test with Wrong Index and big cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndexBigDate/?naziv=control&cijena=4.68">Run 3rd test with full Index and big cardinality of naziv and cijena.</a></button> VS
-    <button><a href ="/testWithWrongIndexBigCard/?naziv=test&cijena=19.92">Run 3rd test with Wrong Index and big cardinality of naziv and cijena.</a></button>
+    <button><a href ="/testWithIndexBigDate/?naziv=evidence&cijena=934.67">Run 3rd test with full Index and big cardinality of naziv and cijena.</a></button> VS
+    <button><a href ="/testWithWrongIndexBigCard/?naziv=where&cijena=8.58">Run 3rd test with Wrong Index and big cardinality of naziv and cijena.</a></button>
     <br><br> 
     <p>If we try to make queries with all three columns from index, the right order and the wrong order index will perform the same, no matter to the cardinality, because of the query planner and optimizer in SQLite.</p>
-    <button><a href ="/testWithIndexBigCard/?naziv=compare&cijena=60.86&datum_kreiranja=1988-05-02">Run test with full Index (query on all columns in index) and big cardinality.</a></button> VS
-    <button><a href ="/testWithWrongIndexBigCardFull/?naziv=not&cijena=64.47&datum_kreiranja=2019-04-11">Run test with Wrong Index (query on all columns in index) and big cardinality.</a></button>
+    <button><a href ="/testWithIndexBigCard/?naziv=magazine&cijena=0.62&datum_kreiranja=1993-08-03">Run test with full Index (query on all columns in index) and big cardinality.</a></button> VS
+    <button><a href ="/testWithWrongIndexBigCardFull/?naziv=hear&cijena=4.52&datum_kreiranja=1980-02-16">Run test with Wrong Index (query on all columns in index) and big cardinality.</a></button>
     <br><br> 
-    <button><a href ="/testWithIndex/?naziv=milk&cijena=2.99&datum_kreiranja=2022-02-11">Run test with full Index (query on all columns in index) and small cardinality.</a></button> VS
-    <button><a href ="/testWithWrongIndexFull/?naziv=proizvod_188&cijena=198.19&datum_kreiranja=2012-08-17">Run test with Wrong Index (query on all columns in index) and small cardinality.</a></button>
+    <button><a href ="/testWithIndex/?naziv=milk&cijena=2.99&datum_kreiranja=2022-02-14">Run test with full Index (query on all columns in index) and small cardinality.</a></button> VS
+    <button><a href ="/testWithWrongIndexFull/?naziv=proizvod_1903&cijena=744.89&datum_kreiranja=1996-05-28">Run test with Wrong Index (query on all columns in index) and small cardinality.</a></button>
     <br><br> 
     <h2>Conclusion</h2>
     <p>Concatenated index can definitely boost performance of some queries, but You should test it with Your specific queries and workload.</p>
     <p>All versions of concatenated index improve read response times in comparison to not using an index, but You should be careful when to use which and that was shown in the tests before.</p>
     <p>Here are some general situations where Concatenated and its types can be helpful:</p>
     <ul>
-    <li>Do not use Concatenated Index if You have small number of rows in Your database, it won't make any difference for queries that search all columns within an index it can even make response time longer.</li>
+    <li>Do not use Concatenated Index if You have small number of rows in Your database, it won't make any difference for queries that search all columns within an index and it can even make response time longer.</li>
     <li>Part Concatenated Indexes can be as useful as Full Concatenated indexes based on cardinality of used columns within the part index for queries that search all columns within an index. </li>
         <ul>
         <li>If You have large cardinality of used columns, then the part index can search a smaller amount of rows because they are more different.</li>
@@ -107,7 +107,7 @@
         <li>Bigger cardinality causes the wrong index on just some columns to search based on a bigger number of rows, while small cardinality causes duplicates so wrong index can be a bit faster.</li>
         <li>A very small cardinality can cause both full and wrong index have bad performanse if You use queries for returning all elements on just a part of columns from an index, because of duplicates.</li>
     </ul>
-    <li>If You have queries that search for all the columns from an index the order of columns is not important in SQLite because of the query planner and optimizer.</li>
+    <li>If You have queries that search for all the columns from an index the order of columns is not important in SQLite because of the query planner and optimizer and then any index can be as powerful as normal ordered concatenated index.</li>
 </ul>
     </body>
 </html>
