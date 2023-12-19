@@ -97,23 +97,39 @@ Točna vremena odgovora i percentili mogu varirati od prikazanih vremena, ali bi
 
 Rezultati je proveden slanjem tri ab testa za svaki slučaj te je onda izračunat prosjek vremena odgovora u milisekundama.
 Dobiveni rezultati za prosjek vremena odgovora:
-* Bez indeksa i 100 redaka: 13.082 ms
-* S indeksom i 100 redaka: 12.969 ms
-* Bez indeksa i 50000 redaka: 32.136 ms
-* S indeksom i 50000 redaka: 12.875 ms
-
-Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
-U slučaju kada imamo 50000 podataka indeks može ubrzati pretragu za ~ 20ms što vidimo iz grafa.
-
-Dobiveni 95. percentili za tri upita od svakog slučaja:
-* Bez indeksa i 100 redaka: (18ms, 17ms, 17ms)
-* S indeksom i 100 redaka: (18ms, 17ms, 17ms)
-* Bez indeksa i 50000 redaka: (46ms, 44ms, 41ms)
-* S indeksom i 50000 redaka: (17ms, 17ms, 17ms)
+* Bez indeksa i 100 redaka:
+    * prvi upit: "Time per request:       8.887 [ms] (mean)"
+    * drugi upit: "Time per request:       8.423 [ms] (mean)"
+    * treći upit: "Time per request:       8.763 [ms] (mean)"
+    * **Prosjek:** 8.691 ms
+* S indeksom i 100 redaka: 
+    * prvi upit: "Time per request:       8.539 [ms] (mean)"
+    * drugi upit: "Time per request:       8.776 [ms] (mean)"
+    * treći upit: "Time per request:       8.634 [ms] (mean)"
+    * **Prosjek:** 8.316
+* Bez indeksa i 50000 redaka: 
+    * prvi upit: "Time per request:       14.562 [ms] (mean)"
+    * drugi upit: "Time per request:       13.796 [ms] (mean)"
+    * treći upit: "Time per request:       15.970 [ms] (mean)"
+    * **Prosjek:** 14.776
+* S indeksom i 50000 redaka: 
+    * prvi upit: "Time per request:       9.087 [ms] (mean)"
+    * drugi upit: "Time per request:       8.534 [ms] (mean)"
+    * treći upit: "Time per request:       8.626 [ms] (mean)"
+    * **Prosjek:** 8.749
+      
+Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga prevelikog utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
+U slučaju kada imamo 50000 podataka indeks itekako ima utjecaja te može ubrzati pretragu za ~6ms, odnosno ~70%.
 
 ![Rezultat](results/WorWA.png)
 
-Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je vrijeme odgovora za 50000 podataka puno veće nego kod 100 podataka. U slučaju druga tri upita gdje se koristio indeks, vidimo da je neovisno o količini podataka, vrijeme podataka otprilike isto. Time se iz grafa može zaključiti da korištenje indeksa s jako malo podataka nema nikakvoga utjecaja (narančasta linija), dok s jako puno podataka, prema 95. percentilu, indeks ubrzava pretragu za ~ 25-30 ms.
+Dobiveni 95. percentili za tri upita od svakog slučaja:
+* Bez indeksa i 100 redaka: (12ms, 11ms, 12ms)
+* S indeksom i 100 redaka: (11ms, 12ms, 13ms)
+* Bez indeksa i 50000 redaka: (17ms, 18ms, 21ms)
+* S indeksom i 50000 redaka: (13ms, 11ms, 12ms)
+
+Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je vrijeme odgovora za 50000 podataka veće nego kod 100 podataka. U slučaju druga tri upita gdje se koristio indeks, vidimo da je neovisno o količini podataka, vrijeme podataka otprilike isto. Time se iz grafa može zaključiti da korištenje indeksa s jako malo podataka nema nikakvoga utjecaja (narančasta linija), dok s jako puno podataka, prema 95. percentilu, indeks ubrzava pretragu za ~ 5-10 ms. 
 
 ![Rezultat](results/WorWOP.png) 
 
@@ -121,7 +137,7 @@ Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo d
 
 Rezultati je proveden slanjem tri ab testa za svaki slučaj te je onda izračunat prosjek vremena odgovora u milisekundama.
 Dobiveni rezultati za prosjek vremena odgovora:
-* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: 12.939 ms
+* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: 
 * Djelomični indeks i velika kardinalnost stupaca naziv i cijena: 13.007 ms
 * Potpuni indeks i mala kardinalnost stupaca naziv i cijena: 12.848 ms
 * Djelomični indeks i mala kardinalnost stupaca naziv i cijena: 33.580 ms
