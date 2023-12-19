@@ -13,7 +13,7 @@
     <p>I used ab with -n 1000 and -c 3 parameters to do all of the tests.</p>
     <p>Some tests can last for a long time, so You should be patient (check if Your browser is loading)...</p>
     <p><i>If you have trouble with starting the test check if You have ab installed (Markdown on GitHub has instructions for installing.)</i></p>
-    <p>You can watch "Time per request" or percentiles above 90 for comparison.</p>
+    <p>You can watch mean of "Time per request" for three requests or percentiles above 90 for comparison.</p>
     
     <h2>Testing read response time with and without Index based on the size of the table:</h2>
     <p><strong>Looking for all data with specific values for naziv, cijena and datum_kreiranja on which the index is created.</strong></p>
@@ -27,7 +27,7 @@
     <button><a href ="/testWithoutIndexLessRows/?naziv=milk&cijena=2.99&datum_kreiranja=2014-05-22">Run 3rd test without Index and less rows.</a></button> VS
     <button><a href ="/testWithIndexLessRows/?naziv=milk&cijena=2.99&datum_kreiranja=1991-08-25">Run 3rd test with Index and less rows.</a></button>  
     <br>
-    <p>Now we check differences in response times when we have Proizvod table with large number of rows (50000) and index should make queries much faster.</p>
+    <p>Now we check differences in response times when we have Proizvod table with large number of rows (50000) and the index should make queries much faster.</p>
     <button><a href ="/testWithoutIndex/?naziv=bread&cijena=1.99&datum_kreiranja=1981-10-12">Run 1st test without Index and more rows.</a></button> VS
     <button><a href ="/testWithIndex/?naziv=bread&cijena=1.99&datum_kreiranja=1994-01-06">Run 1st test with Index and more rows.</a></button>
     <br><br>
@@ -50,7 +50,7 @@
     <button><a href ="/testWithIndexBigCard/?naziv=open&cijena=5.05&datum_kreiranja=2015-08-10">Run 3rd test with full Index and big cardinality of naziv and cijena.</a></button> VS
     <button><a href ="/testWithPartIndexBigCard/?naziv=feel&cijena=3.15&datum_kreiranja=1976-10-09">Run 3rd test with Part Index and big cardinality of naziv and cijena.</a></button>
     <br><br> 
-    <p>Then we check the difference in response times on Proizvod table when columns naziv and cijena have a small number of possible values (3) and the difference is big because the part index cannot reduce the number of rows it has to search.</p>
+    <p>Then we check the difference in response times on Proizvod table when columns naziv and cijena have a small number of possible values (3) and the difference is big because the part index cannot reduce the number of rows it has to search, because of the duplicates.</p>
     <button><a href ="/testWithIndex/?naziv=milk&cijena=2.99&datum_kreiranja=2006-01-26">Run 1st test with full Index and small cardinality of naziv and cijena.</a></button> VS
     <button><a href ="/testWithPartIndex/?naziv=milk&cijena=2.99&datum_kreiranja=1984-10-23">Run 1st test with Part Index and small cardinality of naziv and cijena.</a></button>
     <br><br> 
@@ -94,11 +94,11 @@
     <p>All versions of concatenated index improve read response times in comparison to not using an index, but You should be careful when to use which and that was shown in the tests before.</p>
     <p>Here are some general situations where Concatenated and its types can be helpful:</p>
     <ul>
-    <li>Do not use Concatenated Index if You have small number of rows in Your database, it won't make any difference for queries that search all columns within an index and it can even make response time longer.</li>
+    <li>Do not use Concatenated Index if You have small number of rows in Your database, it won't make any difference for queries that search all columns within an index and it can even make read requests response time longer and make writes slower.</li>
     <li>Part Concatenated Indexes can be as useful as Full Concatenated indexes based on cardinality of used columns within the part index for queries that search all columns within an index. </li>
         <ul>
         <li>If You have large cardinality of used columns, then the part index can search a smaller amount of rows because they are more different.</li>
-        <li>If You have small cardinality of used columns, the part index will have to deal with duplicates</li>
+        <li>If You have small cardinality of used columns, the part index will have to deal with duplicates.</li>
         </ul>
     
     <li>Wrong ordered Concatenated Index can have bad performanse if You use queries that contain only some of the columns from an index.</li>
