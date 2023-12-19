@@ -121,7 +121,7 @@ Dobiveni rezultati za prosjek vremena odgovora:
 Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga prevelikog utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
 U slučaju kada imamo 50000 podataka indeks itekako ima utjecaja te može ubrzati pretragu za ~6ms, odnosno ~70%.
 
-![Rezultat](results/WorWA.png)
+![Rezultat](results/WorWOA.png)
 
 Dobiveni 95. percentili za tri upita od svakog slučaja:
 * Bez indeksa i 100 redaka: (12ms, 11ms, 12ms)
