@@ -207,7 +207,7 @@ Dobiveni 95. percentili za tri upita od svakog slučaja:
 
 Promatrajući 
 
-![Rezultat](results/PorKP.png)
+![Rezultat](results/PorKF.png)
 
 ### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite sa svim stupcima iz indeksa
 
