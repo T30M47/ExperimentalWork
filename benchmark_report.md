@@ -218,3 +218,5 @@ Dobiveni 95. percentili za svaki od upita:
 * Djelomični indeks i velika kardinalnost stupaca naziv i cijena: 12ms
 * Potpuni indeks i mala kardinalnost stupaca naziv i cijena: 11ms
 * Djelomični indeks i mala kardinalnost stupaca naziv i cijena: 11ms
+
+![Rezultat](PorKF.png)
