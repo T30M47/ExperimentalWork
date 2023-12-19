@@ -168,7 +168,7 @@ Dobiveni 95. percentili za tri upita od svakog slučaja:
 * Potpuni indeks i mala kardinalnost stupaca naziv i cijena: (12ms, 12ms, 12ms)
 * Djelomični indeks i mala kardinalnost stupaca naziv i cijena: (21ms, 22ms, 22ms)
 
-Promatrajući 95. percentil, kod prva tri upita koja su koristila potpuni indeks, razlika između prosjeka vremena odgovora je skoro nikakva, dok kod druga tri upita, koja su koristila djelomični indeks, vidimo da je kod velike kardinalnosti vrijeme odgovora jednako, no kod male kardinalnosti i zbog prolaska kroz veliki broj duplikata djelomični indeks je trebao oko 10 ms više vremena da vrati odgovor.
+Promatrajući 95. percentil, kod prva tri upita koja su koristila potpuni indeks, razlika između vremena odgovora 95% zahtjeva je skoro nikakva, dok kod druga tri upita, koja su koristila djelomični indeks, vidimo da je kod velike kardinalnosti vrijeme odgovora 95% jednako, no kod male kardinalnosti i zbog prolaska kroz veliki broj duplikata djelomični indeks je trebao oko ~10 ms više vremena da vrati odgovor.
 
 ![Rezultat](results/PorDP.png)
 
@@ -197,6 +197,9 @@ Dobiveni rezultati za prosjek vremena odgovora:
     * treći upit: "Time per request:       12.776 [ms] (mean)"
     * **Prosjek:** 12.999 ms
 
+Pri korištenju upita koji pretražuje samo dio stupaca iz indeksa (naziv i cijena) treba uzeti u obzir njihovu kardinalnost za korištenje potpunog i krivog (suprotni raspored stupaca) indeksa. Ako koristimo malenu kardinalnost stupaca naziva i cijene (2000 na 50000 redaka te time 25 dupliciranih parova naziva i cijene) i potpuni i krivi indeks mogu imati dosta lošije performanse. Potpuni indeks će još imati zadovoljive performanse, no morati će proći kroz 25 duplikata pa će mu trebati nešto duže. S druge strane krivi indeks, zbog drugačijeg redoslijeda stupaca neće moći tako efikasno proći kroz te duplikate što čak može i dovesti do toga da baza podataka odluči i prolaziti kroz sve podatke te time i do duljih vremena odgovora. U rezultatima se vidi da je krivi indeks kod male kardinalnosti bio ~7.5 ms, odnosno ~75% sporiji od potpunog.
+Kod velike kardinalnosti stupaca naziv i cijena potpuni i krivi indeks mogu imati nešto bolje performanse zbog manje duplikata. Time i krivi indeks, unatoč krivom rasporedu stupaca može smanjiti pretragu na maleni broj redaka i biti puno brži. Time je kod velike kardinalnosti navedenih stupaca krivi indeks bio samo ~4.5 ms, odnosno ~35% sporiji.
+
 ![Rezultat](results/PorKA.png)
 
 Dobiveni 95. percentili za tri upita od svakog slučaja:
@@ -205,13 +208,15 @@ Dobiveni 95. percentili za tri upita od svakog slučaja:
 * Potpuni indeks i velika kardinalnost stupaca naziv i cijena: (11ms, 12ms, 12ms)
 * Djelomični indeks i velika kardinalnost stupaca naziv i cijena: (16ms, 17ms, 17ms)
 
-Promatrajući 
+Promatrajući 95. percentile kod prva tri upita s malenom kardinalnosti stupaca naziva i cijene, vidimo da je razlika u 95% zahtjeva između potpunog i krivog indeksa iznosila ~7-8 ms, dok kod druga tri upita s velikom kardinalnosti stupaca oko ~5ms.
 
-![Rezultat](results/PorKF.png)
+![Rezultat](results/PorKP.png)
 
 ### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite sa svim stupcima iz indeksa
 
 Rezultati je proveden slanjem jednog ab testa za svaki slučaj.
+
+Pri korištenju upita nad svim stupcima iz indeksa, većinom bi svaka vrsta konkateniranog indeksa trebala imati podjednake performanse u SQLite bazi podataka od situacije u kojoj ne koristimo indeks. Razlog tome je što kada tražimo sve stupce, neovisno o njihovom redoslijedu u indeksu, SQLite planer i optimizator upita može koristiti indeks. Time je i prikazan slučaj za korisštenje potpunog i krivog indeksa s upitom nad svim stupcima te se može vidjeti da su 95 percentili podjednaki te bi definitivno bili bolji od ne korištenja indeksa. 
 
 Dobiveni 95. percentili za svaki od upita:
 * Potpuni indeks i velika kardinalnost stupaca naziv i cijena: 12ms
@@ -220,3 +225,7 @@ Dobiveni 95. percentili za svaki od upita:
 * Djelomični indeks i mala kardinalnost stupaca naziv i cijena: 11ms
 
 ![Rezultat](results/PorKF.png)
+
+## Kratki zaključak
+
+Korištenje konkateniranoga indeksa definitivno može donijeti bolje performanse od ne korištenja indeksa za zahtjeve čitanja. No, pritom treba uzeti u obzir koji će se točno upiti koristiti i kako nam izgledaju podaci u bazi podataka. Tako treba uzeti u obzir veličinu tablice, gdje kod male veličine, indeks može bespotrebno zahtjevati dodatne aktivnosti pri unosu i ažuriranju podataka bez da ubrzava zahtjeve čitanja. Također treba uzeti u obzir i količinu različitih vrijednosti koje se nalaze u određenim stupcima pri korištenju potpunog ili djelomičnog indeksa te tu djelomični indeks može biti jednakih performansi te time on možda predstavlja bolji odabir. Kod korištenja potpunog ili krivog indeksa, osim kardinalnosti stupaca, treba uzeti u obzir i upite koje koristimo kako se ne bi dogodilo da krivi indeks uvelike pogorša performanse. Time treba uzeti u obzir vlastite podatke i pokušati primijeniti one indekse koji postižu dobre rezultate i performanse.

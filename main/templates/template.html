@@ -62,7 +62,7 @@
     <br><br> 
     <h2>Testing read response time with full and wrong (opposite order of columns) index based on the number of different values of columns naziv and cijena.</h2>
     <p><strong>Looking for all data with specific values for only naziv and cijena.</strong></p>
-    <p>First we check the difference in response times on Proizvod table when columns naziv and cijena have a smaller number of different values (5000) on 100000 rows and here there should be a noticable difference because the wrong index cannot efficiently use queried columns.</p>
+    <p>First we check the difference in response times on Proizvod table when columns naziv and cijena have a smaller number of different values (2000) on 50000 rows (25 of same naziv and cijena pairs) and here there should be a noticable difference because the wrong index cannot efficiently use queried columns.</p>
     <button><a href ="/testWithIndexDate/?naziv=proizvod_1926&cijena=781.98">Run 1st test with full Index and small cardinality of naziv and cijena.</a></button> VS
     <button><a href ="/testWithWrongIndex/?naziv=proizvod_1913&cijena=709.93">Run 1st test with Wrong Index and small cardinality of naziv and cijena.</a></button>
     <br><br> 
@@ -103,8 +103,8 @@
     
     <li>Wrong ordered Concatenated Index can have bad performanse if You use queries that contain only some of the columns from an index.</li>
     <ul>
-        <li>Bigger cardinality of columns that are used for the query can cause the wrong index to have larger differences from full index than smaller cardinality of those columns.</li>
-        <li>Bigger cardinality causes the wrong index on just some columns to search based on a bigger number of rows, while small cardinality causes duplicates so wrong index can be a bit faster.</li>
+        <li>Smaller cardinality of columns that are used for the query can cause the wrong index to have larger differences from full index than bigger cardinality of those columns.</li>
+        <li>Bigger cardinality causes the wrong index to search based on a bigger number of rows so it still might use the wrong order of columns to narrow down the search, while small cardinality causes duplicates so the database might even choose not to use the index, but search all values.</li>
         <li>A very small cardinality can cause both full and wrong index have bad performanse if You use queries for returning all elements on just a part of columns from an index, because of duplicates.</li>
     </ul>
     <li>If You have queries that search for all the columns from an index the order of columns is not important in SQLite because of the query planner and optimizer and then any index can be as powerful as normal ordered concatenated index.</li>
