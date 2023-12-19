@@ -137,25 +137,84 @@ Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo d
 
 Rezultati je proveden slanjem tri ab testa za svaki slučaj te je onda izračunat prosjek vremena odgovora u milisekundama.
 Dobiveni rezultati za prosjek vremena odgovora:
-* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: 
-* Djelomični indeks i velika kardinalnost stupaca naziv i cijena: 13.007 ms
-* Potpuni indeks i mala kardinalnost stupaca naziv i cijena: 12.848 ms
-* Djelomični indeks i mala kardinalnost stupaca naziv i cijena: 33.580 ms
+* Potpuni indeks i velika kardinalnost stupaca naziv i cijena:
+    * prvi upit: "Time per request:       8.866 [ms] (mean)"
+    * drugi upit: "Time per request:       8.857 [ms] (mean)"
+    * treći upit: "Time per request:       8.638 [ms] (mean)"
+    * **Prosjek:** 8.787 ms
+* Djelomični indeks i velika kardinalnost stupaca naziv i cijena:
+    * prvi upit: "Time per request:       8.778 [ms] (mean)"
+    * drugi upit: "Time per request:       8.798 [ms] (mean)"
+    * treći upit: "Time per request:       8.593 [ms] (mean)"
+    * **Prosjek:** 8.723 ms
+* Potpuni indeks i mala kardinalnost stupaca naziv i cijena: 
+    * prvi upit: "Time per request:       8.753 [ms] (mean)"
+    * drugi upit: "Time per request:       8.571 [ms] (mean)"
+    * treći upit: "Time per request:       8.774 [ms] (mean)"
+    * **Prosjek:** 8.699 ms
+* Djelomični indeks i mala kardinalnost stupaca naziv i cijena:
+    * prvi upit: "Time per request:       16.529 [ms] (mean)"
+    * drugi upit: "Time per request:       16.928 [ms] (mean)"
+    * treći upit: "Time per request:       16.556 [ms] (mean)"
+    * **Prosjek:** 16.671 ms
 
-Pri odabiru korištenja potpunog konkateniranog indeksa (naziv, cijena, datum_kreiranja) ili djelomičnog konkateniranog indeksa (naziv, cijena) treba uzeti u obzir kardinalnost (broj različitih vrijednosti) određenih stupaca. Ako se koristi upit koji traži sve stupce iz indeksa treba uzeti u obzir različite kardinalnosti stupaca iz djelomičnog indeksa (naziv, cijena). Time, ako imamo veliku kardinalnost (veliki broj različitih vrijednosti) tih stupaca (oko 90000 jedinstvenih kombinacija naziva i cijene), potpuni i djelomični indeks će imati jednake performanse jer će djelomični indeks uspjeti smanjiti broj redaka koje mora pretražiti na otprilike jednak broj kao i potpuni indeks. Ako se promatra mala kardinalnost tih stupaca (3, time i puno duplikata s istom kombinacijom naziva i cijene), potpuni indeks će imati jednake performanse, no djelomični indeks će biti ~ 20 ms sporiji jer će pretraživati samo naziv i cijenu, a pošto je jako puno duplikata trebati će kroz svih njih proći i vratiti ih.
+Pri odabiru korištenja potpunog konkateniranog indeksa (naziv, cijena, datum_kreiranja) ili djelomičnog konkateniranog indeksa (naziv, cijena) treba uzeti u obzir kardinalnost (broj različitih vrijednosti) određenih stupaca. Ako se koristi upit koji traži sve stupce iz indeksa treba uzeti u obzir različite kardinalnosti stupaca iz djelomičnog indeksa (naziv, cijena). Time, ako imamo veliku kardinalnost (veliki broj različitih vrijednosti) tih stupaca (oko 45000 jedinstvenih kombinacija naziva i cijene), potpuni i djelomični indeks će imati jednake performanse jer će djelomični indeks uspjeti smanjiti broj redaka koje mora pretražiti na otprilike jednak broj kao i potpuni indeks. Ako se promatra mala kardinalnost tih stupaca (3, time i puno duplikata s istom kombinacijom naziva i cijene), potpuni indeks će imati jednake performanse, no djelomični indeks će biti ~ 8 ms ili 70% sporiji jer će pretraživati samo naziv i cijenu, a pošto je jako puno duplikata trebati će kroz svih njih proći i vratiti ih.
 
-![Rezultat](results/ForPaver.png)
+![Rezultat](results/PorDA.png)
 
 Dobiveni 95. percentili za tri upita od svakog slučaja:
-* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: (18ms, 17ms, 17ms)
-* Djelomični indeks i velika kardinalnost stupaca naziv i cijena: (17ms, 18ms, 18ms)
-* Potpuni indeks i mala kardinalnost stupaca naziv i cijena: (17ms, 17ms, 18ms)
-* Djelomični indeks i mala kardinalnost stupaca naziv i cijena: (48ms, 43ms, 47ms)
+* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: (13ms, 12ms, 12ms)
+* Djelomični indeks i velika kardinalnost stupaca naziv i cijena: (12ms, 12ms, 12ms)
+* Potpuni indeks i mala kardinalnost stupaca naziv i cijena: (12ms, 12ms, 12ms)
+* Djelomični indeks i mala kardinalnost stupaca naziv i cijena: (21ms, 22ms, 22ms)
 
-Promatrajući 
+Promatrajući 95. percentil, kod prva tri upita koja su koristila potpuni indeks, razlika između prosjeka vremena odgovora je skoro nikakva, dok kod druga tri upita, koja su koristila djelomični indeks, vidimo da je kod velike kardinalnosti vrijeme odgovora jednako, no kod male kardinalnosti i zbog prolaska kroz veliki broj duplikata djelomični indeks je trebao oko 10 ms više vremena da vrati odgovor.
 
-![Rezultat](results/ForPpercen.png)
+![Rezultat](results/PorDP.png)
 
 ### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite samo s prva dva stupca iz točnog indeksa ovisno o njihovoj kardinalnosti
 
+Rezultati je proveden slanjem tri ab testa za svaki slučaj te je onda izračunat prosjek vremena odgovora u milisekundama.
+Dobiveni rezultati za prosjek vremena odgovora:
+* Potpuni indeks i mala kardinalnost stupaca naziv i cijena:
+    * prvi upit: "Time per request:       9.906 [ms] (mean)"
+    * drugi upit: "Time per request:       10.344 [ms] (mean)"
+    * treći upit: "Time per request:       9.894 [ms] (mean)"
+    * **Prosjek:** 10.048 ms
+* Djelomični indeks i mala kardinalnost stupaca naziv i cijena:
+    * prvi upit: "Time per request:       17.677 [ms] (mean)"
+    * drugi upit: "Time per request:       17.962 [ms] (mean)"
+    * treći upit: "Time per request:       17.124 [ms] (mean)"
+    * **Prosjek:** 17.587 ms
+* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: 
+    * prvi upit: "Time per request:       8.250 [ms] (mean)"
+    * drugi upit: "Time per request:       8.768 [ms] (mean)"
+    * treći upit: "Time per request:       8.389 [ms] (mean)"
+    * **Prosjek:** 8.469 ms
+* Djelomični indeks i velika kardinalnost stupaca naziv i cijena:
+    * prvi upit: "Time per request:       13.543 [ms] (mean)"
+    * drugi upit: "Time per request:       12.680 [ms] (mean)"
+    * treći upit: "Time per request:       12.776 [ms] (mean)"
+    * **Prosjek:** 12.999 ms
+
+![Rezultat](results/PorKA.png)
+
+Dobiveni 95. percentili za tri upita od svakog slučaja:
+* Potpuni indeks i mala kardinalnost stupaca naziv i cijena: (12ms, 14ms, 12ms)
+* Djelomični indeks i mala kardinalnost stupaca naziv i cijena: (20ms, 21ms, 20ms)
+* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: (11ms, 12ms, 12ms)
+* Djelomični indeks i velika kardinalnost stupaca naziv i cijena: (16ms, 17ms, 17ms)
+
+Promatrajući 
+
+![Rezultat](results/PorKP.png)
+
 ### Usporedba korištenja potpunog i indeksa u krivom redoslijedu na upite sa svim stupcima iz indeksa
+
+Rezultati je proveden slanjem jednog ab testa za svaki slučaj.
+
+Dobiveni 95. percentili za svaki od upita:
+* Potpuni indeks i velika kardinalnost stupaca naziv i cijena: 12ms
+* Djelomični indeks i velika kardinalnost stupaca naziv i cijena: 12ms
+* Potpuni indeks i mala kardinalnost stupaca naziv i cijena: 11ms
+* Djelomični indeks i mala kardinalnost stupaca naziv i cijena: 11ms
