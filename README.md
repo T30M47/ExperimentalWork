@@ -27,11 +27,15 @@ cd ./ExperimentalWork
 If you already are in the root folder (where the Dockerfile is located), build your docker image with:
 ```
 docker build -t yourchosenname .
+
+# it took me about 250 seconds
 ```
 
 and then run the container with:
 ```
 docker run -p 8000:8000 yourchosenname
+
+# wait that "Watching for changes" sentence appears in Your terminal.
 ```
 After running the container, the app should be available on URL:
 ```
@@ -66,10 +70,15 @@ The home page contains a short description on how to benchmark this model, but y
  ### Windows
     ```
     https://httpd.apache.org/download.cgi
+
+    # download the zip and extract it, open Apache24/bin in terminal and you should be able to use it.
     ```
  ### macOS
     ```
-    probably installed on macOS
+    # You need Homebrew
+
+    brew install httpd
+
     ```
  
 ## **Run the benchmark on different data and examples (if You want)**
@@ -131,7 +140,7 @@ and change the neccessary constant in the beggining of the file (e.g NUM_PROIZVO
 ```
 ./manage.py setup_test_data
 ```
-If you want to test only the difference in response times based on the number of rows, I reccomend that You change the four neccessary constants and change others to a smaller number (not needed, but without it the generation of data will last for about 10 minutes)
+If you want to test only the difference in response times based on the number of rows, I reccomend that You change the four neccessary constants and change others to a smaller number (not needed, but without it the generation of data will last for about 5 minutes)
 But this way, all the data in the database will change and You will have to change Your URLs, so You should go to:
 ```
 http://localhost:8000/admin
