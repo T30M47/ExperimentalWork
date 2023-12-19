@@ -111,11 +111,11 @@ Dobiveni 95. percentili za tri upita od svakog slučaja:
 * Bez indeksa i 50000 redaka: (46ms, 44ms, 41ms)
 * S indeksom i 50000 redaka: (17ms, 17ms, 17ms)
 
-![Rezultat](results/WorWOaverage.png)
+![Rezultat](results/WorWA.png)
 
 Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je vrijeme odgovora za 50000 podataka puno veće nego kod 100 podataka. U slučaju druga tri upita gdje se koristio indeks, vidimo da je neovisno o količini podataka, vrijeme podataka otprilike isto. Time se iz grafa može zaključiti da korištenje indeksa s jako malo podataka nema nikakvoga utjecaja (narančasta linija), dok s jako puno podataka, prema 95. percentilu, indeks ubrzava pretragu za ~ 25-30 ms.
 
-![Rezultat](results/WorWOpercentile.png) 
+![Rezultat](results/WorWOP.png) 
 
 ### Usporedba korištenja potpunog i djelomičnog indeksa (samo naziv i cijena) na upite sa svim stupcima iz indeksa ovisno o kardinalnosti atributa sadržanih u djelomičnom indeksu
 
