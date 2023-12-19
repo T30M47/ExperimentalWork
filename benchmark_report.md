@@ -121,7 +121,7 @@ Dobiveni rezultati za prosjek vremena odgovora:
     * **Prosjek:** 8.749
       
 Veličina tablice itekako ima utjecaj na korištenje konkateniranoga indeksa. Na upit koji sadrži sve stupce iz indeksa (naziv, cijena, datum_kreiranja) te tablicu od 100 redaka, korištenje indeksa nema nikakvoga prevelikog utjecaja te tu može dovesti i do dužih vremena odgovora te nepotrebnih ažuriranja pri pisanju pa ga se u tom slučaju ne isplati koristiti. 
-U slučaju kada imamo 50000 podataka indeks itekako ima utjecaja te može ubrzati pretragu za ~6ms, odnosno ~70%.
+U slučaju kada imamo 50000 podataka indeks itekako ima utjecaja te može ubrzati pretragu za ~6ms, odnosno ~40%.
 
 ![Rezultat](results/WorWOA.png)
 
@@ -131,7 +131,7 @@ Dobiveni 95. percentili za tri upita od svakog slučaja:
 * Bez indeksa i 50000 redaka: (17ms, 18ms, 21ms)
 * S indeksom i 50000 redaka: (13ms, 11ms, 12ms)
 
-Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je vrijeme odgovora za 50000 podataka veće nego kod 100 podataka. U slučaju druga tri upita gdje se koristio indeks, vidimo da je neovisno o količini podataka, vrijeme podataka otprilike isto. Time se iz grafa može zaključiti da korištenje indeksa s jako malo podataka nema nikakvoga utjecaja (narančasta linija), dok s jako puno podataka, prema 95. percentilu, indeks ubrzava pretragu za ~ 5-10 ms. 
+Gledajući 95. percentil kod prva tri upita koja nisu koristila indeks, vidimo da je vrijeme odgovora za 50000 podataka veće nego kod 100 podataka. U slučaju druga tri upita gdje se koristio indeks, vidimo da je neovisno o količini podataka, vrijeme podataka otprilike isto. Time se iz grafa može zaključiti da korištenje indeksa s jako malo podataka nema nikakvoga utjecaja (narančasta linija), dok s jako puno podataka, prema 95. percentilu, indeks ubrzava pretragu za ~5-10 ms. 
 
 ![Rezultat](results/WorWOP.png) 
 
@@ -160,7 +160,7 @@ Dobiveni rezultati za prosjek vremena odgovora:
     * treći upit: "Time per request:       16.556 [ms] (mean)"
     * **Prosjek:** 16.671 ms
 
-Pri odabiru korištenja potpunog konkateniranog indeksa (naziv, cijena, datum_kreiranja) ili djelomičnog konkateniranog indeksa (naziv, cijena) treba uzeti u obzir kardinalnost (broj različitih vrijednosti) određenih stupaca. Ako se koristi upit koji traži sve stupce iz indeksa treba uzeti u obzir različite kardinalnosti stupaca iz djelomičnog indeksa (naziv, cijena). Time, ako imamo veliku kardinalnost (veliki broj različitih vrijednosti) tih stupaca (oko 45000 jedinstvenih kombinacija naziva i cijene), potpuni i djelomični indeks će imati jednake performanse jer će djelomični indeks uspjeti smanjiti broj redaka koje mora pretražiti na otprilike jednak broj kao i potpuni indeks. Ako se promatra mala kardinalnost tih stupaca (3, time i puno duplikata s istom kombinacijom naziva i cijene), potpuni indeks će imati jednake performanse, no djelomični indeks će biti ~ 8 ms ili ~70% sporiji jer će pretraživati samo naziv i cijenu, a pošto je jako puno duplikata trebati će kroz svih njih proći i vratiti ih.
+Pri odabiru korištenja potpunog konkateniranog indeksa (naziv, cijena, datum_kreiranja) ili djelomičnog konkateniranog indeksa (naziv, cijena) treba uzeti u obzir kardinalnost (broj različitih vrijednosti) određenih stupaca. Ako se koristi upit koji traži sve stupce iz indeksa treba uzeti u obzir različite kardinalnosti stupaca iz djelomičnog indeksa (naziv, cijena). Time, ako imamo veliku kardinalnost (veliki broj različitih vrijednosti) tih stupaca (oko 45000 jedinstvenih kombinacija naziva i cijene), potpuni i djelomični indeks će imati jednake performanse jer će djelomični indeks uspjeti smanjiti broj redaka koje mora pretražiti na otprilike jednak broj kao i potpuni indeks. Ako se promatra mala kardinalnost tih stupaca (3, time i puno duplikata s istom kombinacijom naziva i cijene), potpuni indeks će imati jednake performanse, no djelomični indeks će biti ~ 8 ms ili ~50% sporiji jer će pretraživati samo naziv i cijenu, a pošto je jako puno duplikata trebati će kroz svih njih proći i vratiti ih.
 
 ![Rezultat](results/PorDA.png)
 
@@ -199,7 +199,7 @@ Dobiveni rezultati za prosjek vremena odgovora:
     * treći upit: "Time per request:       12.776 [ms] (mean)"
     * **Prosjek:** 12.999 ms
 
-Pri korištenju upita koji pretražuje samo dio stupaca iz indeksa (naziv i cijena) treba uzeti u obzir njihovu kardinalnost za korištenje potpunog i krivog (suprotni raspored stupaca) indeksa. Ako koristimo malenu kardinalnost stupaca naziva i cijene (2000 na 50000 redaka te time 25 dupliciranih parova naziva i cijene) i potpuni i krivi indeks mogu imati dosta lošije performanse. Potpuni indeks će još imati zadovoljive performanse, no morati će proći kroz 25 duplikata pa će mu trebati nešto duže. S druge strane krivi indeks, zbog drugačijeg redoslijeda stupaca neće moći tako efikasno proći kroz te duplikate što čak može i dovesti do toga da baza podataka odluči i prolaziti kroz sve podatke te time i do duljih vremena odgovora. U rezultatima se vidi da je krivi indeks kod male kardinalnosti bio ~7.5 ms, odnosno ~75% sporiji od potpunog.
+Pri korištenju upita koji pretražuje samo dio stupaca iz indeksa (naziv i cijena) treba uzeti u obzir njihovu kardinalnost za korištenje potpunog i krivog (suprotni raspored stupaca) indeksa. Ako koristimo malenu kardinalnost stupaca naziva i cijene (2000 na 50000 redaka te time 25 dupliciranih parova naziva i cijene) i potpuni i krivi indeks mogu imati dosta lošije performanse. Potpuni indeks će još imati zadovoljive performanse, no morati će proći kroz 25 duplikata pa će mu trebati nešto duže. S druge strane krivi indeks, zbog drugačijeg redoslijeda stupaca neće moći tako efikasno proći kroz te duplikate što čak može i dovesti do toga da baza podataka odluči i prolaziti kroz sve podatke te time i do duljih vremena odgovora. U rezultatima se vidi da je krivi indeks kod male kardinalnosti bio ~7.5 ms, odnosno ~45% sporiji od potpunog.
 Kod velike kardinalnosti stupaca naziv i cijena potpuni i krivi indeks mogu imati nešto bolje performanse zbog manje duplikata. Time i krivi indeks, unatoč krivom rasporedu stupaca može smanjiti pretragu na maleni broj redaka i biti puno brži. Time je kod velike kardinalnosti navedenih stupaca krivi indeks bio samo ~4.5 ms, odnosno ~35% sporiji.
 Treba pripaziti da jako mala kardinalnost može utjecati loše performanse i za potpuni indeks kada se traže samo stupci s malom kardinalnosti zbog jako velikog broja duplikata koje treba vratiti.
 
