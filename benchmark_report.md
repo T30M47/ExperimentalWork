@@ -215,7 +215,7 @@ Dobiveni 95. percentili za tri upita od svakog slučaja:
 * Potpuni indeks i velika kardinalnost stupaca naziv i cijena: (17ms, 16ms, 17ms)
 * Djelomični indeks i velika kardinalnost stupaca naziv i cijena: (25ms, 24ms, 24ms)
 
-Promatrajući 95. percentile kod prva tri upita s malenom kardinalnosti stupaca naziva i cijene, vidimo da je razlika u 95% zahtjeva između potpunog i krivog indeksa iznosila ~13 ms, odnosno ~67%, dok kod druga tri upita s velikom kardinalnosti stupaca oko ~7ms, odnosno ~46%.
+Promatrajući 95. percentile kod prva tri upita s malenom kardinalnosti stupaca naziva i cijene, vidimo da je u 95% zahtjeva krivi indeks bio ~13 ms, odnosno ~67% sporiji, dok kod druga tri upita s velikom kardinalnosti stupaca oko ~7ms, odnosno ~46% sporiji.
 
 ![Rezultat](results/PorKP.png)
 
