@@ -93,10 +93,10 @@ Kod rezultata sam za tri testiranja za svaku usporedbu promatrao prosjek vremena
 
 ---
 
-Točna vremena odgovora i percentili mogu varirati od prikazanih vremena, ali bi odnosi trebali ostati isti.
+Točna vremena odgovora i percentili mogu varirati od prikazanih vremena.
 Postotci su računati pomoću formule:
 ```
-(PrvaDobivenaVrijednost-DrugaDobivenaVrijednost)/PrvaDobivenaVrijednost
+|(PrvaDobivenaVrijednost-DrugaDobivenaVrijednost)|/PrvaDobivenaVrijednost
 ```
 
 ### Usporedba ne korištenja indeksa i korištenja potpunog indeksa na upite sa svim stupcima iz indeksa ovisno o veličini tablice
