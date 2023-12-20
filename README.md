@@ -27,13 +27,11 @@ cd ./ExperimentalWork
 If you already are in the root folder (where the Dockerfile is located), build your docker image with (it takes about 250 seconds to build):
 ```
 docker build -t yourchosenname .
-
 ```
 
 and then run the container with (wait that "Watching for changes" sentence appears in Your terminal.):
 ```
 docker run -p 8000:8000 yourchosenname
-
 ```
 After running the container, the app should be available on URL:
 ```
