@@ -65,9 +65,9 @@ The home page contains a short description on how to benchmark this model, but y
     ```
  ### Windows
     ```
-    https://httpd.apache.org/download.cgi
+    https://www.apachelounge.com/download/
 
-    # download the zip and extract it, open Apache24/bin in terminal and you should be able to use it.
+    # download the Apache zip and extract it, open Apache24/bin in terminal and you should be able to use it.
     ```
  ### macOS
     ```
