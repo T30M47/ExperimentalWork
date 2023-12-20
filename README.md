@@ -4,7 +4,7 @@ This repository is used for experimental work for "Infrastruktura za podatke vel
 
 # Description for using
 ---
-**I used Linux for implementing this benchmark, response times may be different on other operating systems, but the comparisons between response times will have the same relationships.**
+**I used Linux for implementing this benchmark, response times may be different on other operating systems.**
 
 **The recommended way to use this repo is to clone it!**
 
